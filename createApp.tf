@@ -21,7 +21,7 @@ resource "heroku_app" "mypizza" {
 # Build code & release to the app
 
 resource "heroku_build" "mypizza" {
-  app = "${heroku_app.mypizza.id}"
+  app = "{heroku_app.mypizza.id}"
   source = {
     path = "./"
   }
