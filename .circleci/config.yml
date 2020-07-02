@@ -13,7 +13,7 @@ jobs:
       - node/with-cache:
           steps:
             - run:
-                name: Update npm
+                name: "Update npm"
                 command: 'sudo npm install -g npm@latest'
             - restore_cache:
                   key: dependency-cache-{{ checksum "package-lock.json" }}
@@ -22,7 +22,9 @@ jobs:
                 key: dependency-cache-{{ checksum "package-lock.json" }}
                 paths:
                   - node_modules
-            - run: npm start
+            - run:
+                name: "Inicia a aplicação"
+                command: 'sudo npm start'
   deploy:
     docker:
       - image: hashicorp/terraform
@@ -31,7 +33,6 @@ jobs:
       - run: terraform init -input=false
       - run: terraform apply -input=false -auto-approve
 workflows:
-  version: 2
   myPizza:
     jobs:
       - runProject
