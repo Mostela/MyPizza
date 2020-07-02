@@ -6,6 +6,10 @@ orbs:
   node: circleci/node@1.1.6
 jobs:
   runProject:
+    environment:
+      NOMENEGOCIO: "Joao Camargo"
+      DATABASE_ID: "86c8f911-df15-432b-831d-51f9407bcb95"
+      DATABASE_TOKEN: "03494566-4b7c-4935-8662-ed42761be154"
     executor:
       name: node/default
     steps:
@@ -23,8 +27,13 @@ jobs:
                 paths:
                   - node_modules
             - run:
-                name: "Inicia a aplicação"
-                command: 'sudo npm start'
+                name: "Deveria rodar testes na aplicação"
+                command: "echo 'Ainda nao escrevi eles'"
+            - store_artifacts:
+                path: test-results
+
+            - store_test_results:
+                path: test-results
   deploy:
     docker:
       - image: hashicorp/terraform
