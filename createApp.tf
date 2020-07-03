@@ -13,24 +13,24 @@ resource "heroku_app" "mypizza" {
 
   config_vars = {
     NOMENEGOCIO= "Pizzaria do Joao"
-    DATABASE_ID="85cab10f-aff1-4da2-b6fb-c787aee1b563"
-    DATABASE_TOKEN="c02bde16-38d0-42e8-9f11-706c8675359c"
+    DATABASE_ID="1c0fb0bd-5f0d-4274-b411-1e7e0e1e8e91"
+    DATABASE_TOKEN="3804359e-6fe9-4831-834a-a3ec271fa170"
   }
 }
 
 # Build code & release to the app
 
 resource "heroku_build" "mypizza" {
-  app = "{heroku_app.mypizza.id}"
+  app = heroku_app.mypizza.id
   source = {
-    path = "./"
+    path = "./src"
   }
 }
 
 output "mypizza_app_url" {
-  value = "https://${heroku_app.mypizza.name}.herokuapp.com/produto"
+  value = "https://heroku_app.mypizza.name.herokuapp.com/produto"
 }
 
 output "saida_do_git"{
-  value = "git clone ${heroku_app.mypizza.git_url}"
+  value = "git clone heroku_app.mypizza.git_url"
 }
